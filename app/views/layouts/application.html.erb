@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hotel</title>
+  <%= stylesheet_link_tag    "application", media: "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <% if user_signed_in? %>
+          <li><%= menu_item 'List of the hotels', hotels_path %></li>
+          <li><%= menu_item 'Best Hotels', best_hotels_path %></li>
+        <% end %>
+      </ul>
+     
+      <ul class="nav navbar-nav navbar-right">
+        <%if user_signed_in? %>
+          <li><%= menu_item 'Add Hotel', new_hotel_path %></li>
+          <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>   
+        <% else %>
+          <li><%= menu_item 'Sign in', new_user_session_path %></li>
+          <li><%= menu_item 'Sign up', new_user_registration_path %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<%= yield %>
+
+</body>
+</html>

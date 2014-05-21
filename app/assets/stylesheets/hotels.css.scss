@@ -1,0 +1,76 @@
+// Place all the styles related to the hotels controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.hotels_form{
+  width: 50%;
+  .breakfast_included{
+    label.checkbox{
+      float: left;
+    }
+  }
+  .price{
+    width: 15%;
+  }
+}
+.hotel_block{
+  width: 100%;
+  clear: both;
+  float: left;
+}
+
+.photo{
+  float: left;
+  width: 20%;
+  margin-bottom: 30px;
+  img{
+    float: right;
+  }
+}
+
+.description {
+  float: left;
+  width: 80%;
+  margin-bottom: 30px;
+ }
+.hotel_show{
+  width: 70%;
+  margin: auto;
+  .photo_show{
+    float: left;
+  }
+  .description_show{
+    width: 55%;
+    float: right;
+  }
+}
+.comment_form{
+  width: 400px;
+  margin-top: 20px;
+  float: left;
+  clear: both;
+  .btn{
+    margin-top: 10px;
+  }
+}
+.rate {
+  margin-top: 10px;
+  clear: both;
+  float: left;
+}
+.comments{
+  clear: both;
+  width: 400px;
+  margin-top: 20px;
+  float: left;
+  .email{
+    float: left;
+    font-weight: bold;
+  }
+  .comment_rate{
+    float: right;
+  }
+  .comment_content{
+    clear: both;
+    margin-left: 20px;
+  }
+}

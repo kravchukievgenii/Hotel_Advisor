@@ -1,0 +1,37 @@
+.span12
+  - @rate.each do |rate|
+    - hotel = Hotel.find(rate.cacheable_id)
+    .hotel_block.span12
+      .photo
+        = image_tag hotel.photo, height: '150', width: '200' if hotel.photo.file
+      .description    
+        dl.dl-horizontal
+          dt Hotel name
+          dd 
+            = hotel.title
+          dt Rating
+          dd 
+            = rating_for hotel, "stars"
+          dt Address
+          dd 
+            = hotel.address.country
+            | ,   
+            = hotel.address.state
+            | , 
+            = hotel.address.city
+            | , 
+            = hotel.address.street
+          dt Room description
+          dd 
+            = hotel.room_description
+          dt Breakfast included
+          dd 
+            - if hotel.breakfast_included
+              |yes
+            - else
+              |no
+          dt Price
+          dd 
+            = hotel.price
+          dt  
+            = link_to 'Details', hotel_path(hotel)

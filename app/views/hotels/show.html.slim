@@ -1,0 +1,40 @@
+.hotel_show.span12
+  h3 = @hotel.title
+  p 
+    = @hotel.address.country
+    | ,   
+    = @hotel.address.state
+    | , 
+    = @hotel.address.city
+    | , 
+    = @hotel.address.street
+  - if @hotel.photo.file
+    .span6.photo_show
+      = image_tag @hotel.photo, height: '300', width: '400'  
+  .span6.description_show
+    dl.dl-horizontal      
+      dt Room description
+      dd =@hotel.room_description
+      dt Price
+      dd = @hotel.price
+      dt Breakfast included
+      dd 
+        - if @hotel.breakfast_included
+          |yes
+        - else
+          |no
+  .rate.span12 
+    = rating_for @hotel, "stars"
+  = simple_form_for @comment, html: {class: 'form-horizontal comment_form'} do |f|
+    = f.input_field :content, as: :text, class: 'form-control'
+    = f.input_field :user_id, as: :hidden, value: current_user.id, class: 'form-control'
+    = f.input_field :hotel_id, as: :hidden, value: @hotel.id, class: 'form-control'
+    = f.button :submit, 'Comment', class: 'btn btn-default'
+
+  .comments.span6
+    - @hotel.comments.each do |comment|
+      - rate = Rate.where("rater_id = ? AND rateable_id = ?", comment.user.id, @hotel.id).first
+      .span3.email = comment.user.email
+      .span3.comment_rate = rating_for @hotel, "stars", :star => rate.stars if rate
+      .span6.comment_content = comment.content
+      hr
